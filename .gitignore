@@ -1,0 +1,9 @@
+# regenerable / bulky
+code/data/raw/
+code/data/processed/
+__pycache__/
+*.pyc
+.DS_Store
+node_modules/
+.omc/
+code/.omc/

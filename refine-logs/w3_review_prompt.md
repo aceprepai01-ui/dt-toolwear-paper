@@ -1,0 +1,15 @@
+You are a senior reviewer in ML-for-manufacturing. We are executing the M-DRDC proposal you previously rated 9.1/10 READY (mechanics-anchored monotone residual diffusion for tool-wear path correction). Week-3 implementation hit a wall; we need a methods-level diagnosis, not encouragement.
+
+## Setup
+Source pool per rotation: 2 PHM2010 tools + 1 QIT tool (68 cycles, wears to 698um). Bank = calibration-variant augmentation (16-32 variants/tool, uniform k~U(5,25)% label budgets, matching deployment). Diffusion: 0.19M-param 1-D conditional DDPM over u-space residuals r = u_real - u_twin, u = softplus-inv increments on a T=64 grid (ENC_EPS=0.05 floor), per-position normalization, CFG (drop 0.15), guidance 0. Cond vec (4-d): [misfit/10, w_start/100, twin_rise/100, labeled-tail-slope*10]. Target k=10%. Metric: crossing-time CRPS of 50 sampled corrected paths vs twin point |error|, plus 64-grid path RMSE. Twin baseline: aggregate 24.3 cuts err, 16.7um RMSE.
+
+## Iteration history (all bugs verified by diagnosis before fixing)
+1. Censoring bug in scoring -> fixed. 2. Bank calibrated on contiguous early fractions while target used uniform budgets -> protocol-matched (residual scale mismatch halved). 3. u-space plateau spikes (softplus-inv -> -13.8) dominating stats -> ENC_EPS floor. 4. Global -> per-position normalization. 5. Added QIT source: c4 rotation fixed (42->18 CRPS) but c1/c6 poisoned (indiscriminate large corrections). 6. Added tail-slope conditioning: separates targets cleanly (c1 2.66 plateauing / c4 6.09 climbing / c6 9.84 steep).
+Result of iteration 6 across seeds {1,2,3}: aggregate CRPS {40.6, 43.7, 16.7} vs twin 24.3. Seed 3 PASSES decisively (c4 CRPS 2.2 vs twin 42; c6 14.9). Seeds 1-2 fail; c6 swings 14.9<->75.7. Diagnosis: implicit conditioning learning is optimization-noise dominated at 48-96 bank samples.
+Currently trying: EMA (0.998) + 96-sample bank.
+
+## Questions (answer concisely, bullets)
+1. Is EMA+more-variants likely sufficient to stabilize 4-d conditioning at ~100 samples, or is implicit FiLM conditioning fundamentally under-determined here? What single training change would you bet on (loss weighting by cond similarity? cond dropout schedule? lower dim cond?)
+2. Should we switch to an EXPLICIT mechanism: similarity-weighted retrieval of bank residuals (kernel weights on cond_vec) with diffusion as smoother/perturber, or conditional flow matching, or simply k-NN residual transfer + noise? Rank alternatives by (a) chance of passing our gate, (b) reviewer defensibility for JIM/Measurement/EAAI as the paper's core mechanism.
+3. Our gate compares sample-CRPS vs twin point-error; for near-perfect twins (c1: 8.3um RMSE) any sampling spread inflates CRPS. Is the gate miscalibrated? Should the paper's claim be scoped to "corrects weak twins without damaging good ones" with a selective-application rule (e.g., apply correction only when predicted correction magnitude >> twin uncertainty)?
+4. Bottom line: with 8 GPU-h left in the W3 budget, what exact configuration do you prescribe for the final attempt?

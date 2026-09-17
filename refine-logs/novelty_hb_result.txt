@@ -1,0 +1,820 @@
+Reading additional input from stdin...
+2026-08-13T00:44:18.184040Z ERROR codex_core::session::session: failed to load skill /Users/jixia/.agents/skills/claude-scientific-writer/skills/scholar-evaluation/SKILL.md: missing YAML frontmatter delimited by ---
+2026-08-13T00:44:18.184775Z ERROR codex_core::session::session: failed to load skill /Users/jixia/.agents/skills/alirezarezvani-claude-skills/engineering/skill-tester/assets/sample-skill/SKILL.md: missing YAML frontmatter delimited by ---
+OpenAI Codex v0.147.0
+--------
+workdir: /Users/jixia/Downloads/dt-toolwear-paper/refine-logs
+model: gpt-5.4
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: xhigh
+reasoning summaries: none
+session id: 019ff893-b551-7ed3-97a7-26ad862c5b21
+--------
+user
+You are a brutally honest reviewer for Measurement/EAAI/JIM. Assess novelty of this REFRAMED paper.
+
+## Proposed paper
+"Empirical-Bayes pooled mechanistic tool-wear twin for label-scarce milling prognosis: when pooled physics beats deep learning."
+Method: three-phase wear-rate ODE (Taylor/Usui-family) per tool; full-life SOURCE tools (PHM2010 rotations + QIT-CEMC cross-machine tool) fitted individually; empirical hyperprior (mean/sd of ODE params across source fits); TARGET tool calibrated via MAP under this hyperprior from k=10% uniform early labels; forecast last-20% wear + RUL; weighted split-conformal intervals on twin residuals. Deterministic, ~zero compute.
+Evidence architecture: (1) HB twin at k=10% (MAE 24.9um) ~ matches DL upper bound trained at 80% labels (21.0), beats TCN few-shot/twin-aug/diffusion-corrected systems (48-54) 2x on decision window; (2) pre-registered arbitration showing diffusion residual correction adds NOTHING downstream (controlled negative result, 10-iteration diagnosis); (3) boundary analysis: regime-change tool (c4, coating breakdown) provably unpredictable from early labels — misfit-flag detection; (4) all public data.
+
+## Known prior art (verified today)
+A. arXiv 2601.15942 (Jan 2026): hierarchical Bayesian model-based prognostics with cross-unit partial pooling — crack growth + lithium battery, generic parametric degradation models. CLOSEST mechanism prior. Not milling, not mechanistic wear ODE, no DL comparison.
+B. Karandikar & Schmitz, Precision Eng 2013-14 (2 parts): Bayesian updating of Taylor tool LIFE constants, single tool, MCMC/grid, priors from handbook. Not hierarchical, not wear trajectory, not scarce-label protocol.
+C. MSSP 2023: Wiener-process + weight-optimized particle filter, online single-tool Bayesian updating for RUL. Not pooled, needs online signal stream.
+D. Standard DT/deep-learning tool wear literature incl. 2026-07 preprint (cutting-mechanics FiLM diffusion), DT+DDPM bearing papers, physics-informed regressors.
+
+## Questions
+1. Novelty of each claim (pooled-ODE mechanism for milling; physics-vs-DL scarcity benchmark w/ negative result; boundary/detectability analysis) HIGH/MEDIUM/LOW + closest prior.
+2. Is citing A fatal, or is the domain instantiation + comparative-evidence architecture a sufficient delta for CAS Q2 (Measurement/EAAI, JIM stretch)?
+3. What would a reviewer cite to reject as incremental, and the strongest framing to preempt it?
+4. Overall score /10 and verdict PROCEED / PROCEED WITH CAUTION / ABANDON. Concise bullets.
+warning: Under-development features enabled: chronicle. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/jixia/.codex/config.toml.
+warning: clamping SessionEnd hook timeout to 3s in /Users/jixia/.codex/plugins/cache/openai-codex/codex/1.0.6/hooks/hooks.json
+warning: skipping prompt hook in /Users/jixia/.codex/plugins/cache/claude-plugins-official/databases-on-aws/1.6.1/hooks/hooks.json: prompt hooks are not supported yet
+warning: clamping SessionEnd hook timeout to 3s in /Users/jixia/.codex/plugins/cache/omc/oh-my-claudecode/4.15.7/hooks/hooks.json
+warning: running async SessionEnd hook synchronously in /Users/jixia/.codex/plugins/cache/omc/oh-my-claudecode/4.15.7/hooks/hooks.json
+warning: clamping SessionEnd hook timeout to 3s in /Users/jixia/.codex/plugins/cache/omc/oh-my-claudecode/4.15.7/hooks/hooks.json
+warning: running async SessionEnd hook synchronously in /Users/jixia/.codex/plugins/cache/omc/oh-my-claudecode/4.15.7/hooks/hooks.json
+warning: skipping prompt hook in /Users/jixia/.codex/plugins/cache/pua-skills/pua/3.5.0/hooks/hooks.json: prompt hooks are not supported yet
+2026-08-13T00:44:18.862513Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when AuthRequired(AuthRequiredError { www_authenticate_header: "Bearer realm=\"OAuth\", resource_metadata=\"https://observability.mcp.cloudflare.com/.well-known/oauth-protected-resource/mcp\"" })
+2026-08-13T00:44:18.876373Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when AuthRequired(AuthRequiredError { www_authenticate_header: "Bearer realm=\"OAuth\", resource_metadata=\"https://builds.mcp.cloudflare.com/.well-known/oauth-protected-resource/mcp\"" })
+2026-08-13T00:44:18.879896Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when AuthRequired(AuthRequiredError { www_authenticate_header: "Bearer realm=\"OAuth\", resource_metadata=\"https://mcp.cloudflare.com/.well-known/oauth-protected-resource/mcp\"" })
+2026-08-13T00:44:18.967413Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when AuthRequired(AuthRequiredError { www_authenticate_header: "Bearer realm=\"OAuth\", resource_metadata=\"https://observability.mcp.cloudflare.com/.well-known/oauth-protected-resource/mcp\"" })
+2026-08-13T00:44:18.969554Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when AuthRequired(AuthRequiredError { www_authenticate_header: "Bearer realm=\"OAuth\", resource_metadata=\"https://builds.mcp.cloudflare.com/.well-known/oauth-protected-resource/mcp\"" })
+2026-08-13T00:44:18.969554Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when AuthRequired(AuthRequiredError { www_authenticate_header: "Bearer realm=\"OAuth\", resource_metadata=\"https://mcp.cloudflare.com/.well-known/oauth-protected-resource/mcp\"" })
+2026-08-13T00:44:19.435113Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when AuthRequired(AuthRequiredError { www_authenticate_header: "Bearer error=\"invalid_token\", error_description=\"No authorization provided\", resource_metadata=\"https://mcp.vercel.com/.well-known/oauth-protected-resource\"" })
+2026-08-13T00:44:19.583224Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when AuthRequired(AuthRequiredError { www_authenticate_header: "Bearer error=\"invalid_token\", error_description=\"Missing Authorization header\", resource_metadata=\"https://server.smithery.ai/.well-known/oauth-protected-resource/zwldarren/akshare-one-mcp/mcp\"" })
+2026-08-13T00:44:19.895243Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when AuthRequired(AuthRequiredError { www_authenticate_header: "Bearer error=\"invalid_token\", error_description=\"Missing Authorization header\", resource_metadata=\"https://server.smithery.ai/.well-known/oauth-protected-resource/zwldarren/akshare-one-mcp/mcp\"" })
+2026-08-13T00:44:19.989742Z ERROR codex_rmcp_client::oauth::refresh_transaction: error=failed to refresh OAuth tokens for server cloudflare-bindings: OAuth refresh token was rejected: Server returned error response: invalid_grant: Grant not found
+2026-08-13T00:44:20.131345Z ERROR codex_rmcp_client::oauth::refresh_transaction: error=failed to refresh OAuth tokens for server cloudflare-bindings: OAuth refresh token was rejected: Server returned error response: invalid_grant: Grant not found
+2026-08-13T00:44:22.629385Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when AuthRequired(AuthRequiredError { www_authenticate_header: "Bearer error=\"invalid_token\", error_description=\"No authorization provided\", resource_metadata=\"https://mcp.vercel.com/.well-known/oauth-protected-resource\"" })
+warning: Exceeded skills context budget. All skill descriptions were removed and 675 additional skills were not included in the model-visible skills list.
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: UserPromptSubmit
+hook: UserPromptSubmit Completed
+codex
+I’m treating this as a novelty/positioning review, not a writing exercise. I’ll do a quick memory pass for prior context, read the `academic-paper-reviewer` skill, then check the closest primary literature before scoring the claims.
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+exec
+/bin/zsh -lc 'cat /Users/jixia/.agents/skills/academic-research-skills/academic-paper-reviewer/SKILL.md' in /Users/jixia/Downloads/dt-toolwear-paper/refine-logs
+ succeeded in 0ms:
+---
+name: academic-paper-reviewer
+description: "Multi-perspective academic paper review with dynamic reviewer personas. Simulates 5 independent reviewers (EIC + 3 peer reviewers + Devil's Advocate) with field-specific expertise. Supports full review, re-review (verification), quick assessment, methodology focus, and Socratic guided modes. Triggers on: review paper, peer review, manuscript review, referee report, review my paper, critique paper, simulate review, editorial review."
+metadata:
+  version: "1.4"
+  last_updated: "2026-03-08"
+  status: active
+  related_skills:
+    - academic-paper
+    - academic-pipeline
+---
+
+# Academic Paper Reviewer v1.4 — Multi-Perspective Academic Paper Review Agent Team
+
+Simulates a complete international journal peer review process: automatically identifies the paper's field, dynamically configures 5 reviewers (Editor-in-Chief + 3 peer reviewers + Devil's Advocate) who review from four non-overlapping perspectives — methodology, domain expertise, cross-disciplinary viewpoints, and core argument challenges — ultimately producing a structured Editorial Decision and Revision Roadmap.
+
+**v1.1 Improvements**:
+1. Added Devil's Advocate Reviewer — specifically challenges core arguments, detects logical fallacies, and identifies the strongest counter-arguments
+2. Added `re-review` mode — verification review, focused on checking whether revisions address the review comments
+3. Expanded review team from 4 to 5 members
+
+---
+
+## Quick Start
+
+**Simplest command:**
+```
+Review this paper: [paste paper or provide file]
+```
+
+```
+Review this paper: [paste paper or provide file]
+```
+
+**Output:**
+1. Automatically identifies the paper's field and methodology type
+2. Dynamically configures the specific identities and expertise of 5 reviewers
+3. 5 independent review reports (each from a different perspective)
+4. 1 Editorial Decision Letter + Revision Roadmap
+
+---
+
+## Trigger Conditions
+
+### Trigger Keywords
+
+**English**: review paper, peer review, manuscript review, referee report, review my paper, critique paper, simulate review, editorial review
+
+### Non-Trigger Scenarios
+
+| Scenario | Skill to Use |
+|----------|-------------|
+| Need to write a paper (not review) | `academic-paper` |
+| Need in-depth investigation of a research topic | `deep-research` |
+| Need to revise a paper (already have review comments) | `academic-paper` (revision mode) |
+
+### Quick Mode Selection Guide
+
+| Your Situation | Recommended Mode |
+|----------------|-----------------|
+| Need comprehensive review (first submission) | full |
+| Checking if revisions addressed comments | re-review |
+| Quick quality assessment (15 min) | quick |
+| Focus only on methods/statistics | methodology-focus |
+| Want to learn by doing (guided review) | guided |
+
+Not sure? Use `full` for pre-submission review, `re-review` for post-revision verification.
+
+---
+
+## Agent Team (7 Agents)
+
+| # | Agent | Role | Phase |
+|---|-------|------|-------|
+| 1 | `field_analyst_agent` | Analyzes the paper's field, dynamically configures 5 reviewer identities | Phase 0 |
+| 2 | `eic_agent` | Journal Editor-in-Chief — journal fit, originality, overall quality | Phase 1 |
+| 3 | `methodology_reviewer_agent` | Peer Reviewer 1 — research design, statistical validity, reproducibility | Phase 1 |
+| 4 | `domain_reviewer_agent` | Peer Reviewer 2 — literature coverage, theoretical framework, domain contribution | Phase 1 |
+| 5 | `perspective_reviewer_agent` | Peer Reviewer 3 — cross-disciplinary connections, practical impact, challenging fundamental assumptions | Phase 1 |
+| 6 | **`devils_advocate_reviewer_agent`** | **Devil's Advocate — core argument challenges, logical fallacy detection, strongest counter-arguments** | **Phase 1** |
+| 7 | `editorial_synthesizer_agent` | Synthesizes all reviews, identifies consensus and disagreements, makes editorial decision | Phase 2 |
+
+---
+
+## Orchestration Workflow (3 Phases)
+
+```
+User: "Review this paper"
+     |
+=== Phase 0: FIELD ANALYSIS & PERSONA CONFIGURATION ===
+     |
+     +-> [field_analyst_agent] -> Reviewer Configuration Card (x5)
+         - Reads the complete paper
+         - Identifies: primary discipline, secondary discipline, research paradigm, methodology type, target journal tier, paper maturity
+         - Dynamically generates specific identities for 5 reviewers:
+           * EIC: Which journal's editor, area of expertise, review preferences
+           * Reviewer 1 (Methodology): Methodological expertise, what they particularly focus on
+           * Reviewer 2 (Domain): Domain expertise, research interests
+           * Reviewer 3 (Perspective): Cross-disciplinary angle, what unique perspective they bring
+           * Devil's Advocate: Specifically challenges core arguments, detects logical gaps
+     |
+     ** Presents Reviewer Configuration to user for confirmation (adjustable) **
+     |
+=== Phase 1: PARALLEL MULTI-PERSPECTIVE REVIEW ===
+     |
+     |-> [eic_agent] -------> EIC Review Report
+     |   - Journal fit, originality, significance, relevance to readership
+     |   - Does not go deep into methodology (that's Reviewer 1's job)
+     |   - Sets the review tone
+     |
+     |-> [methodology_reviewer_agent] -> Methodology Review Report
+     |   - Research design rigor, sampling strategy, data collection
+     |   - Analysis method selection, statistical validity, effect sizes
+     |   - Reproducibility, data transparency
+     |
+     |-> [domain_reviewer_agent] -------> Domain Review Report
+     |   - Literature review completeness, theoretical framework appropriateness
+     |   - Academic argument accuracy, incremental contribution to the field
+     |   - Missing key references
+     |
+     |-> [perspective_reviewer_agent] --> Perspective Review Report
+     |   - Cross-disciplinary connections and borrowing opportunities
+     |   - Practical applications and policy implications
+     |   - Broader social or ethical implications
+     |
+     +-> [devils_advocate_reviewer_agent] --> Devil's Advocate Report
+         - Core argument challenges (strongest counter-arguments)
+         - Cherry-picking detection
+         - Confirmation bias detection
+         - Logic chain validation
+         - Overgeneralization detection
+         - Alternative paths analysis
+         - Stakeholder blind spots
+         - "So what?" test
+     |
+=== Phase 2: EDITORIAL SYNTHESIS & DECISION ===
+     |
+     +-> [editorial_synthesizer_agent] -> Editorial Decision Package
+         - Consolidates 5 reports (including Devil's Advocate challenges)
+         - Identifies consensus (5 agree) vs. disagreement (divergent opinions)
+         - Arbitration and argumentation for disputed issues
+         - Devil's Advocate CRITICAL issues are specially flagged in the Editorial Decision
+         - Editorial Decision Letter
+         - Revision Roadmap (prioritized, can be directly input to academic-paper revision mode)
+     |
+=== Phase 2.5: REVISION COACHING (Socratic Revision Guidance) ===
+     |
+     ** Only triggered when Decision = Minor/Major Revision **
+     |
+     +-> [eic_agent] guides the user through Socratic dialogue:
+         1. Overall positioning — "After reading the review comments, what surprised you the most?"
+         2. Core issue focus — Guides user to understand consensus issues
+         3. Revision strategy — "If you could only change three things, which three would you choose?"
+         4. Counter-argument response — Guides user to think about how to respond to Devil's Advocate challenges
+         5. Implementation planning — Helps prioritize revisions
+     |
+     +-> After dialogue ends, produces:
+         - User's self-formulated revision strategy
+         - Reprioritized Revision Roadmap
+     |
+     ** User can say "just fix it" to skip guidance **
+```
+
+### Checkpoint Rules
+
+1. **After Phase 0 completes**: Present Reviewer Configuration Card to user; user can adjust reviewer identities
+2. **Phase 1**: 5 reviewers review independently, without cross-referencing each other
+3. **Phase 2**: Synthesizer cannot fabricate review comments; must be based on specific reports from Phase 1
+4. **Devil's Advocate special handling**: If the Devil's Advocate finds CRITICAL issues, the Editorial Decision cannot be Accept
+5. **Phase 2.5**: Revision Coaching only triggers when Decision is not Accept; user can choose to skip
+
+---
+
+## Operational Modes (5 Modes)
+
+| Mode | Trigger | Agents | Output |
+|------|---------|--------|--------|
+| `full` | Default / "full review" | All 7 agents | 5 review reports + Editorial Decision + Revision Roadmap |
+| **`re-review`** | **Pipeline Stage 3' / "verification review"** | **field_analyst + eic + editorial_synthesizer** | **Revision response checklist + residual issues + new Decision** |
+| `quick` | "quick review" | field_analyst + eic | EIC quick assessment + key issues list (15-minute version) |
+| `methodology-focus` | "check methodology" | field_analyst + methodology_reviewer | In-depth methodology review report |
+| `guided` | "guide me" | All + Socratic dialogue | Socratic issue-by-issue guided review |
+
+### Mode Selection Logic
+
+```
+"Review this paper"                      -> full
+"Give me a quick look at this paper"     -> quick
+"Help me check the methodology"          -> methodology-focus
+"Does this paper have methodology issues"-> methodology-focus
+"Guide me to improve this paper"         -> guided
+"Walk me through the issues in my paper" -> guided
+"Verification review" / "Check revisions"-> re-review
+```
+
+---
+
+## Re-Review Mode (Added in v1.1 — Verification Review)
+
+Re-review mode is the dedicated mode for Pipeline Stage 3', designed to **verify whether revisions address the first-round review comments**.
+
+### How It Works
+
+```
+Input:
+1. Original Revision Roadmap (Stage 3 output)
+2. Revised manuscript
+3. Response to Reviewers (optional)
+
+Phase 0: Reads the Revision Roadmap, builds a checklist
+Phase 1: EIC checks each item (other reviewers not activated)
+Phase 2: Editorial Synthesis -> New Decision
+```
+
+### Verification Logic
+
+```
+For each item in the Revision Roadmap:
+
+Priority 1 (Required):
+  -> Check each item for corresponding changes in the revised manuscript
+  -> Assess revision quality (FULLY_ADDRESSED / PARTIALLY_ADDRESSED / NOT_ADDRESSED / MADE_WORSE)
+  -> All Priority 1 items must be FULLY_ADDRESSED for Accept
+
+Priority 2 (Suggested):
+  -> Check each item
+  -> At least 80% should have a response
+  -> NOT_ADDRESSED items require author explanation
+
+Priority 3 (Nice to Fix):
+  -> Check but does not affect Decision
+```
+
+### New Issue Detection
+
+```
+In addition to checking old items, EIC also scans for:
+- Whether content added during revision introduces new problems
+- Whether newly added references are correct (but deep verification is left to Stage 4.5 integrity check)
+- Whether revisions cause inconsistencies
+```
+
+### Socratic Guidance After Re-Review
+
+```
+If Re-Review Decision = Major Revision:
+  -> Activate Residual Coaching (residual issue guidance)
+  -> EIC guides user through Socratic dialogue:
+    1. Gap analysis — "How many issues did the first round of revisions resolve? Why are the remaining ones hard to address?"
+    2. Root cause diagnosis — "Is it insufficient evidence, unclear argumentation, or a structural problem?"
+    3. Trade-off decisions — "Which ones can be marked as research limitations?"
+    4. Action plan — Plan revision approach for each residual issue
+  -> Maximum 5 rounds of dialogue
+  -> User can say "just fix it" to skip guidance
+```
+
+### Re-Review Output Format
+
+```markdown
+# Verification Review Report
+
+## Decision
+[Accept / Minor Revision / Major Revision]
+
+## Revision Response Checklist
+
+### Priority 1 — Required Revisions
+
+| # | Original Review Comment | Response Status | Revision Location | Quality Assessment |
+|---|------------------------|-----------------|-------------------|-------------------|
+| R1 | [Original text] | FULLY_ADDRESSED | Section X.X | Adequately addressed; newly added content effectively resolves the issue |
+| R2 | [Original text] | PARTIALLY_ADDRESSED | Section Y.Y | Partially addressed, but still missing [specific gap] |
+
+### Priority 2 — Suggested Revisions
+
+| # | Original Review Comment | Response Status | Notes |
+|---|------------------------|-----------------|-------|
+| S1 | [Original text] | FULLY_ADDRESSED | -- |
+| S2 | [Original text] | NOT_ADDRESSED | Author explanation: [reason] |
+
+### Priority 3 — Nice to Fix
+
+| # | Original Review Comment | Response Status |
+|---|------------------------|-----------------|
+| N1 | [Original text] | FULLY_ADDRESSED |
+
+## New Issues (Discovered During Revision)
+
+| # | Type | Location | Description |
+|---|------|----------|-------------|
+| NEW-1 | [Type] | Section X.X | [Description] |
+
+## Decision Rationale
+[Rationale based on the checklist]
+
+## Residual Issues (If Any)
+[List unresolved items, suggest marking as Acknowledged Limitations]
+```
+
+---
+
+## Guided Mode (Socratic Guided Review)
+
+The design philosophy of Guided mode is to **help authors understand the paper's problems themselves**, rather than passively receiving revision instructions.
+
+### How It Works
+
+```
+Phase 0: Normal Field Analysis execution
+Phase 1: Normal execution of 5 reviews (but not all displayed immediately)
+Phase 2: Does not produce full Editorial Decision; enters dialogue mode instead
+```
+
+### Dialogue Flow
+
+1. **EIC opens**: First points out 1-2 core strengths of the paper (building confidence), then raises the most critical structural issue
+2. **Wait for author response**: Author thinks, responds, or asks questions
+3. **Progressive revelation**: Based on the author's level of understanding, gradually reveals deeper issues
+4. **Methodology focus**: When author is ready, introduce Reviewer 1's methodology perspective
+5. **Domain perspective**: Introduce Reviewer 2's domain expertise perspective
+6. **Cross-disciplinary challenge**: Introduce Reviewer 3's unique perspective
+7. **Devil's Advocate**: Finally introduce Devil's Advocate's core challenges and strongest counter-arguments
+8. **Wrap up**: When all key issues have been discussed, provide a structured Revision Roadmap
+
+### Dialogue Rules
+
+- Each response limited to 200-400 words (avoid information overload)
+- Use more questions, fewer commands ("Do you think this sampling strategy can capture phenomenon X?" rather than "the sampling is flawed")
+- When author's response shows understanding, affirm and move forward
+- When author's response veers off topic, gently guide back to the main point
+- Can ask the author to read a certain reference before continuing discussion
+
+---
+
+## Review Output Format
+
+Each reviewer's report structure is detailed in `templates/peer_review_report_template.md`.
+
+### Devil's Advocate Report Structure (Special Format)
+
+The Devil's Advocate uses a dedicated format, not the standard reviewer template:
+- **Strongest Counter-Argument** (200-300 words)
+- **Issue List** (categorized as CRITICAL / MAJOR / MINOR, with dimension and location)
+- **Ignored Alternative Explanations/Paths**
+- **Missing Stakeholder Perspectives**
+- **Observations (Non-Defects)**
+
+---
+
+## Editorial Decision Format
+
+The Editorial Decision Letter structure is detailed in `templates/editorial_decision_template.md`.
+
+---
+
+## Integration
+
+### Upstream/Downstream Relationships
+
+```
+deep-research --> academic-paper --> [integrity check] --> academic-paper-reviewer --> academic-paper (revision) --> academic-paper-reviewer (re-review) --> [final integrity] --> finalize
+   (research)       (writing)         (integrity audit)      (review)                    (revision)                    (verification review)                (final verification)   (finalization)
+```
+
+### Specific Integration Methods
+
+| Integration Direction | Description |
+|----------------------|-------------|
+| **Upstream: academic-paper -> reviewer** | Receives the complete paper output from `academic-paper` full mode, directly enters Phase 0 |
+| **Upstream: integrity check -> reviewer** | In the Pipeline, the paper must pass integrity check before entering reviewer |
+| **Downstream: reviewer -> academic-paper** | The Revision Roadmap format can be directly used as reviewer feedback input for `academic-paper` revision mode |
+| **Downstream: reviewer (re-review) -> integrity** | After re-review completes, proceeds to final integrity verification |
+
+### Pipeline Usage Example
+
+```
+User: I want to write a paper about AI in higher education quality assurance, from research to submission
+
+Step 1: deep-research -> Research report
+Step 2: academic-paper -> Paper first draft
+Step 3: integrity check -> 100% verification of references/data
+Step 4: academic-paper-reviewer (full) -> 5 review reports + Revision Roadmap
+Step 5: academic-paper (revision) -> Revised manuscript
+Step 6: academic-paper-reviewer (re-review) -> Verification review
+Step 7: (if needed) academic-paper (revision) -> Second revised manuscript
+Step 8: integrity check (final) -> Final 100% verification
+Step 9: academic-paper (format-convert) -> Final paper
+```
+
+---
+
+## Agent File References
+
+| Agent | Definition File |
+|-------|----------------|
+| field_analyst_agent | `agents/field_analyst_agent.md` |
+| eic_agent | `agents/eic_agent.md` |
+| methodology_reviewer_agent | `agents/methodology_reviewer_agent.md` |
+| domain_reviewer_agent | `agents/domain_reviewer_agent.md` |
+| perspective_reviewer_agent | `agents/perspective_reviewer_agent.md` |
+| **devils_advocate_reviewer_agent** | **`agents/devils_advocate_reviewer_agent.md`** |
+| editorial_synthesizer_agent | `agents/editorial_synthesizer_agent.md` |
+
+---
+
+## Reference Files
+
+| Reference | Purpose | Used By |
+|-----------|---------|---------|
+| `references/review_criteria_framework.md` | Structured review criteria framework (differentiated by paper type) | all reviewers |
+| `references/top_journals_by_field.md` | Top journal lists for major academic fields (EIC role calibration) | field_analyst, eic |
+| `references/editorial_decision_standards.md` | Accept/Minor/Major/Reject criteria and decision matrix | eic, editorial_synthesizer |
+| `references/statistical_reporting_standards.md` | Statistical reporting standards + APA 7.0 format quick reference + red flag list | methodology_reviewer |
+| `references/quality_rubrics.md` | Calibrated 0-100 scoring rubrics for 7 review dimensions with decision mapping | all reviewers |
+
+---
+
+## Templates
+
+| Template | Purpose |
+|----------|---------|
+| `templates/peer_review_report_template.md` | Review report template used by each reviewer |
+| `templates/editorial_decision_template.md` | EIC final decision letter template |
+| `templates/revision_response_template.md` | Revision response template for authors (R->A->C format) |
+
+---
+
+## Examples
+
+| Example | Demonstrates |
+|---------|-------------|
+| `examples/hei_paper_review_example.md` | Full review example: "Impact of Declining Birth Rates on Management Strategies of Taiwan's Private Universities" |
+| `examples/interdisciplinary_review_example.md` | Cross-disciplinary review example: "Using Machine Learning to Predict University Closure Risk in Taiwan" |
+
+---
+
+## Quality Standards
+
+| Dimension | Requirement |
+|-----------|-------------|
+| Perspective differentiation | Each reviewer's review must come from a different angle; no duplicate criticisms |
+| Evidence-based | EIC's decision must be based on specific reviewer comments; no fabrication |
+| Specificity | Reviews must cite specific passages, data, or page numbers from the paper; no vague comments |
+| Balance | Strengths and Weaknesses must be balanced; cannot only criticize without affirming |
+| Professional tone | Review tone must be professional and constructive; avoid personal attacks or demeaning language |
+| Actionability | Each weakness must include specific improvement suggestions |
+| Format consistency | All reports must follow the template structure; no freestyle |
+| **Devil's Advocate completeness** | **Devil's Advocate must produce the strongest counter-argument; cannot be omitted** |
+| **CRITICAL threshold** | **Devil's Advocate CRITICAL issues cannot be ignored by the Editorial Decision** |
+
+---
+
+## Output Language
+
+Follows the paper's language. Academic terms remain in English. User can override (e.g., "review this Chinese paper in English").
+
+---
+
+## Related Skills
+
+| Skill | Relationship |
+|-------|-------------|
+| `academic-paper` | Upstream (provides paper) + Downstream (receives revision roadmap) |
+| `deep-research` | Upstream (provides research foundation) |
+| `tw-hei-intelligence` | Auxiliary (verifies higher education data accuracy) |
+| `academic-pipeline` | Orchestrated by (Stage 3 + Stage 3') |
+
+---
+
+## Version Info
+
+| Item | Content |
+|------|---------|
+| Skill Version | 1.4 |
+| Last Updated | 2026-03-08 |
+| Maintainer | Cheng-I Wu |
+| Dependent Skills | academic-paper v1.0+ (upstream/downstream integration) |
+| Role | Multi-perspective academic paper review simulator |
+
+---
+
+## Changelog
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.4 | 2026-03-08 | Quality rubrics reference (0-100 scoring with 5 descriptors per dimension, weighted aggregation formula, decision mapping); Quick Mode Selection Guide; Dimension Scores upgraded from optional 1-5 to required 0-100 with rubric descriptors |
+| 1.3 | 2025-03-05 | DA vs R3 role boundaries with explicit responsibility tables; CRITICAL finding criteria with concrete examples; Consensus classification (CONSENSUS-4/3/SPLIT/DA-CRITICAL); Confidence Score weighting rules; Asian & Regional Journals reference (TSSCI + Asia-Pacific + OA options) |
+| 1.2 | 2026-03 | Added statistical reporting standards reference; enhanced methodology_reviewer_agent with statistical reporting adequacy sub-step |
+| 1.1 | 2026-02 | Added Devil's Advocate Reviewer (7th agent), added re-review mode, expanded review team from 4 to 5 |
+| 1.0 | 2026-02 | Initial version: 6 agents, 4 modes, 3-phase workflow |
+
+hook: PostToolUse
+hook: PostToolUse Completed
+exec
+/bin/zsh -lc 'rg -n "PHM2010|SciData|tool wear|toolwear|milling|hierarchical Bayesian|partial pooling|dt-toolwear-paper" /Users/jixia/.codex/memories/MEMORY.md' in /Users/jixia/Downloads/dt-toolwear-paper/refine-logs
+ succeeded in 0ms:
+435:scope: Screen-observed Claude/WeChat work on PHM2010 tool-wear evaluation, M-DRDC/AD research scripts, TESS writing, and an ESP32-S3 wearable prototype package.
+436:applies_to: cwd=/Users/jixia/Downloads/dt-toolwear-paper and /Users/jixia/Downloads; reuse_rule=rerun data/code/hardware checks from the current repository or device before using observed PASS states, model results, or wiring/package claims.
+442:- extensions/chronicle/resources/2026-08-09T07-43-00-jlEB-10min-memory-summary.md (cwd=/Users/jixia/Downloads/dt-toolwear-paper, rollout_path=extensions/chronicle/resources/2026-08-09T07-43-00-jlEB-10min-memory-summary.md, updated_at=2026-08-09T07:43:00+00:00, thread_id=None, screen-observed)
+448:- `dt-toolwear-paper`, PHM2010, R001-R003, W1, W2, `download_phm2010.sh`, `w1_run.log`, `w2_baselines.json`, `w3_mdrdc_train.py`, CRPS, TESS detectability, ESP32-S3, MetaPatch, AD8232, MAX30102, MPU6050, BME280, OLED SSD1306, Micro-SD
+461:## Task 3: Continue SciData/PHM2010 QIT-enhanced W3 validation, observed/in progress
+465:- extensions/chronicle/resources/2026-08-12T11-49-00-kOdu-10min-memory-summary.md (cwd=/Users/jixia/Downloads, rollout_path=extensions/chronicle/resources/2026-08-12T11-49-00-kOdu-10min-memory-summary.md, updated_at=2026-08-12T11:49:00+00:00, thread_id=None, SciData extraction and W3 experiment state)
+470:- SciData, PHM2010, `mill_data_processing.py`, `qit.py`, `tool_wear.xls`, QIT, W3, mM-DRDC, CRPS, M2, 24.3, three seeds, EMA, tail-slope conditioning
+477:- The newer observed W3 work extracted SciData data, aligned `mill_data_processing.py` to PHM2010’s 12-dimensional force-feature format, and used `qit.py` to parse `tool_wear.xls` with four-cutter-side VBmax selection, mm-to-µm conversion, belt/cycle checks, and 68 cycles. The stated decision is a three-seed comparison against the CRPS `<24.3` M2 target, not a single visible run or plan. [Task 3] [chronicle memory]
+580:- extensions/chronicle/resources/2026-08-08T10-31-00-poRz-10min-memory-summary.md (cwd=/Users/jixia/Downloads/dt-toolwear-paper, rollout_path=extensions/chronicle/resources/2026-08-08T10-31-00-poRz-10min-memory-summary.md, updated_at=2026-08-08T10:31:00+00:00, thread_id=None, PHM2010 dataset source and code-module review)
+581:- extensions/chronicle/resources/2026-08-08T10-41-00-dEBF-10min-memory-summary.md (cwd=/Users/jixia/Downloads/dt-toolwear-paper, rollout_path=extensions/chronicle/resources/2026-08-08T10-41-00-dEBF-10min-memory-summary.md, updated_at=2026-08-08T10:41:00+00:00, thread_id=None, PHM/tool-wear, RP feedback, and GNN topic guidance)
+586:- `网络大数据分析研究选题指导`, intrusion-detection datasets, cloud/edge workload traces, `dt-toolwear-paper`, `build_explainer.js`, `build_theory_data.js`, `M-DRDC理论基础与数据资源.docx`, `FINAL_PROPOSAL`
+600:- In `dt-toolwear-paper`, the observed map was `metrics.py`, `twin/wear_ode.py`, `twin/calibrate.py`, and `twin/force_model.py`; PHM2010 intake was described as Kaggle first, IEEE DataPort fallback, and SciData/Figshare auxiliary. The visible `R001`/`R002`/`R003` PASS values and synthetic calibration are leads only. Do not expose or store Kaggle credentials; confirm local data and rerun `code/scripts/download_phm2010.sh` only when credentials are already configured. [Task 3] [chronicle memory]
+
+hook: PostToolUse
+hook: PostToolUse Completed
+codex
+I’ve got enough context to focus the review. Next I’m checking the closest primary sources around hierarchical Bayes, Bayesian tool-wear updating, and recent milling prognostics so the novelty call is tied to what a harsh reviewer would actually cite.
+web search: 
+web search: arXiv 2601.15942 hierarchical Bayesian model-based prognostics cross-unit partial pooling crack growth lithium battery
+web search: 
+web search: site:arxiv.org 2601.15942
+web search: 
+web search: https://www.sciencedirect.com/science/article/pii/S1526612526006043
+web search: 
+web search: "Tool life prediction using Bayesian updating. Part 1" milling tool life model discrete grid method abstract
+web search: 
+web search: Niaki Ulutan Mears mechanistic modeling tool wear milling Markov Chain Monte Carlo 2015 2016 abstract
+web search: 
+web search: https://www.researchgate.net/publication/281454330_Parameter_Estimation_Using_Markov_Chain_Monte_Carlo_Method_in_Mechanistic_Modeling_of_Tool_Wear_During_Milling
+web search: 
+web search: https://open.clemson.edu/all_dissertations/1858/
+web search: 
+web search: MSSP 2023 Wiener process weight optimized particle filter tool wear remaining useful life milling
+web search: 
+web search: "hierarchical model relating cutting forces and tool wear"
+web search: 
+web search: https://www.sciencedirect.com/science/article/abs/pii/S0263224123003032
+codex
+The closest threat so far is not the 2026 arXiv alone. A harsher reviewer can also point to Niaki’s 2015/2016 milling work as prior Bayesian calibration of a mechanistic wear model, plus the 2026 drilling paper for tool-to-tool hierarchical Bayes, so I’m checking your local notes only to see whether your claimed delta is already framed against those lines of attack.
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+exec
+/bin/zsh -lc "nl -ba /Users/jixia/.codex/memories/MEMORY.md | sed -n '435,448p;477,477p;600,600p'" in /Users/jixia/Downloads/dt-toolwear-paper/refine-logs
+ succeeded in 0ms:
+   435	scope: Screen-observed Claude/WeChat work on PHM2010 tool-wear evaluation, M-DRDC/AD research scripts, TESS writing, and an ESP32-S3 wearable prototype package.
+   436	applies_to: cwd=/Users/jixia/Downloads/dt-toolwear-paper and /Users/jixia/Downloads; reuse_rule=rerun data/code/hardware checks from the current repository or device before using observed PASS states, model results, or wiring/package claims.
+   437	
+   438	## Task 1: Inspect tool-wear/M-DRDC research outputs and wearable package, observed/partial
+   439	
+   440	### rollout_summary_files
+   441	
+   442	- extensions/chronicle/resources/2026-08-09T07-43-00-jlEB-10min-memory-summary.md (cwd=/Users/jixia/Downloads/dt-toolwear-paper, rollout_path=extensions/chronicle/resources/2026-08-09T07-43-00-jlEB-10min-memory-summary.md, updated_at=2026-08-09T07:43:00+00:00, thread_id=None, screen-observed)
+   443	- extensions/chronicle/resources/2026-08-09T07-55-00-kwAS-10min-memory-summary.md (cwd=/Users/jixia/Downloads, rollout_path=extensions/chronicle/resources/2026-08-09T07-55-00-kwAS-10min-memory-summary.md, updated_at=2026-08-09T07:55:00+00:00, thread_id=None, screen-observed)
+   444	- extensions/chronicle/resources/2026-08-09T08-32-00-PGMi-10min-memory-summary.md (cwd=/Users/jixia/Downloads, rollout_path=extensions/chronicle/resources/2026-08-09T08-32-00-PGMi-10min-memory-summary.md, updated_at=2026-08-09T08:32:00+00:00, thread_id=None, screen-observed)
+   445	
+   446	### keywords
+   447	
+   448	- `dt-toolwear-paper`, PHM2010, R001-R003, W1, W2, `download_phm2010.sh`, `w1_run.log`, `w2_baselines.json`, `w3_mdrdc_train.py`, CRPS, TESS detectability, ESP32-S3, MetaPatch, AD8232, MAX30102, MPU6050, BME280, OLED SSD1306, Micro-SD
+   477	- The newer observed W3 work extracted SciData data, aligned `mill_data_processing.py` to PHM2010’s 12-dimensional force-feature format, and used `qit.py` to parse `tool_wear.xls` with four-cutter-side VBmax selection, mm-to-µm conversion, belt/cycle checks, and 68 cycles. The stated decision is a three-seed comparison against the CRPS `<24.3` M2 target, not a single visible run or plan. [Task 3] [chronicle memory]
+   600	- In `dt-toolwear-paper`, the observed map was `metrics.py`, `twin/wear_ode.py`, `twin/calibrate.py`, and `twin/force_model.py`; PHM2010 intake was described as Kaggle first, IEEE DataPort fallback, and SciData/Figshare auxiliary. The visible `R001`/`R002`/`R003` PASS values and synthetic calibration are leads only. Do not expose or store Kaggle credentials; confirm local data and rerun `code/scripts/download_phm2010.sh` only when credentials are already configured. [Task 3] [chronicle memory]
+
+hook: PostToolUse
+exec
+/bin/zsh -lc "rg -n \"Niaki|Karandikar|hierarchical|partial pooling|empirical Bayes|conformal|c4|coating breakdown|diffusion|negative result|few-shot|TCN|WOPF|Wiener|Measurement|EAAI|JIM\" /Users/jixia/Downloads/dt-toolwear-paper -g '"'!**/.git/**'"'" in /Users/jixia/Downloads/dt-toolwear-paper/refine-logs
+hook: PostToolUse Failed
+ succeeded in 6499ms:
+web search: 
+web search: "hierarchical Bayesian" "tool wear" milling
+codex
+The literature picture is stable enough now. Your core risk is not “this is already done verbatim”; it’s “the reviewer can collapse your method into an obvious domain instantiation of January/June 2026 hierarchical-Bayes PHM work unless you sell the paper as an evidence-driven milling benchmark with a narrow mechanistic delta.”
+hook: PreToolUse
+hook: PreToolUse Completed
+hook: PostToolUse
+hook: PostToolUse Failed
+codex
+I hit the sandbox’s temp-file restriction trying to inspect the memory rollout metadata. I’m switching to plain read commands; no impact on the review itself.
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+exec
+/bin/zsh -lc 'rg -n "session_meta|payload.id|turn_context" /Users/jixia/.codex/memories/extensions/chronicle/resources/2026-08-09T07-43-00-jlEB-10min-memory-summary.md' in /Users/jixia/Downloads/dt-toolwear-paper/refine-logs
+ exited 1 in 0ms:
+hook: PostToolUse
+hook: PostToolUse Failed
+exec
+/bin/zsh -lc "nl -ba /Users/jixia/.codex/memories/extensions/chronicle/resources/2026-08-09T07-43-00-jlEB-10min-memory-summary.md | sed -n '1,40p'" in /Users/jixia/Downloads/dt-toolwear-paper/refine-logs
+ succeeded in 0ms:
+     1	## Memory summary
+     2	
+     3	The user was working on a local PHM2010/DT-toolwear project in Claude Desktop on macOS. The work centered on validating W1 real-data results for R001-R003, then moving into W2 baseline experiments. The visible project path was `/Users/jixia/Downloads/dt-toolwear-paper`, with relevant code and output paths including `code/scripts/download_phm2010.sh`, `code/results/r002_twin_calibration.json`, `code/results/w1_run.log`, and `code/data/processed/c{1,4,6}.npz`.
+     4	
+     5	The visible workflow used Claude Desktop as an agent interface while Finder was open to Downloads/archive material. The user pointed Claude at `/Users/jixia/Downloads/archive` as a Kaggle-derived dataset location, and Claude reported evaluating the results. Claude’s transcript showed W1 R001-R003 marked as passing with real data, then W2 baseline generation and execution beginning.
+     6	
+     7	### Context of everything that came before this recording
+     8	
+     9	Only this recording window and its OCR/frame artifacts were available as evidence. Before the window began, Claude already had a detailed plan for a PHM2010 tool-wear/data paper workflow: obtain or locate PHM2010 data, run R001-R003 checks, and then proceed to W2 baseline work. The broader task appears to be an empirical validation pipeline for a digital-twin/tool-wear paper or project, using PHM2010 data and producing reproducible code/result artifacts.
+    10	
+    11	No reliable external context about the user’s role, assignments, blockers, or next tasks was available from approved sources in this environment. Within the recording itself, the next visible task after W1 validation was running full W2 baselines.
+    12	
+    13	### Important non-obvious context about the user
+    14	
+    15	- `Claude Desktop`: Primary coding/agent app visible in the session. The transcript contained code-file references, reported command execution, and result summaries.
+    16	- `Finder`: Used to inspect `/Users/jixia/Downloads` and an `archive` folder containing `c1`, `c2`, `c3`, `c4`, `c5`, `c6` subfolders.
+    17	- `WeChat`: Open beside Claude, with contacts/chats including `Steve`, `Grace | 学管师`, `File Transfer`, and several Chinese-language groups visible. The chat content was not relevant to the coding task.
+    18	- `/Users/jixia/Downloads/dt-toolwear-paper`: Main local project folder visible in Finder/Claude.
+    19	- `/Users/jixia/Downloads/archive`: Dataset folder the user referenced as the Kaggle data source for evaluation.
+    20	- `metrics.py`: Project module visible in Claude’s table, associated with MAE/RMSE, PHM scoring, PICP/NMPIW, CRPS, and calibration.
+    21	- `twin/wear_ode.py`: Project module visible in Claude’s table, associated with a three-stage wear-rate ODE model.
+    22	- `twin/calibrate.py`: Project module visible in Claude’s table, associated with MAP calibration using prior literature plus multi-start L-BFGS.
+    23	- `twin/force_model.py`: Project module visible in Claude’s table, associated with mechanistic force mapping and ridge regression.
+    24	- `code/results/r002_twin_calibration.json`: Output file named in the W1 real-data validation summary.
+    25	- `code/results/w1_run.log`: Output log named in the W1 validation summary.
+    26	- `code/data/processed/c{1,4,6}.npz`: Processed data artifact named in the W1 validation summary.
+    27	- `w2_baselines.py`: File Claude reported creating for W2 baselines near the end of the recording.
+    28	
+    29	## Recording summary
+    30	
+    31	### Claude PHM2010/DT-toolwear Work
+    32	
+    33	At the start of the window, Claude Desktop was open with a project/chat list on the left and a PHM2010/DT-toolwear transcript in the main pane. A side “Files” panel showed no working directory initially. The visible Claude response included a table of project files and modeling responsibilities:
+    34	
+    35	- `metrics.py`: MAE/RMSE, PHM scoring, PICP/NMPIW, CRPS, calibration-related metrics.
+    36	- `twin/wear_ode.py`: a three-stage wear-rate ODE model.
+    37	- `twin/calibrate.py`: MAP calibration.
+    38	- `twin/force_model.py`: mechanistic force model and regression.
+    39	
+    40	Claude’s W1 checklist showed three checks passing in the earlier synthetic/initial setup: R001 feature interpretation, R002 student-t/parameter calibration with high R², and R003 TinyTCN overfit/self-check with MAE below a 3 µm threshold.
+
+hook: PostToolUse
+hook: PostToolUse Failed
+web search: 
+web search: site:arxiv.org/abs 2601.15942
+codex
+**Bottom Line**
+
+This is **not HIGH-method-novelty** in 2026. It is a **moderately novel manufacturing instantiation with a potentially strong evidence package**. The publishable part is not “hierarchical Bayes for PHM” or “Bayesian wear modeling” per se. It is: **a public, low-label milling benchmark showing that pooled mechanistic transfer can beat data-hungry DL, plus a disciplined negative result and an explicit failure boundary**.
+
+1. **Claim: pooled-ODE mechanism for milling**
+- **Novelty: MEDIUM**
+- **Closest prior:** January 2026 generic HBM-PHM paper ([arXiv 2601.15942](https://doi.org/10.48550/arXiv.2601.15942)); domain-closer threat is **June 2026** drilling/tool-wear hierarchical Bayes ([J. Manufacturing Processes, 10.1016/j.jmapro.2026.06.050](https://doi.org/10.1016/j.jmapro.2026.06.050)); older milling Bayes lines are Karandikar 2014 ([Part 1](https://doi.org/10.1016/j.precisioneng.2013.06.006), [Part 2](https://doi.org/10.1016/j.precisioneng.2013.06.007)) and Niaki 2015/2016 ([MSEC 2015](https://www.researchgate.net/publication/281454330_Parameter_Estimation_Using_Markov_Chain_Monte_Carlo_Method_in_Mechanistic_Modeling_of_Tool_Wear_During_Milling), [dissertation](https://open.clemson.edu/all_dissertations/1858/)).
+- **Why:** partial pooling over degradation parameters is already in the literature; Bayesian mechanistic milling wear calibration is already in the literature. Your delta is the **combination**: milling wear-trajectory ODE + EB prior transfer + sparse early-label MAP target calibration + no online sensor stream required.
+
+2. **Claim: physics-vs-DL scarcity benchmark with negative result**
+- **Novelty: MEDIUM**
+- **Closest prior:** small-sample/hybrid tool-RUL papers in this lane, e.g. *Measurement* 2023 CNN + multistage Wiener ([link](https://www.sciencedirect.com/science/article/abs/pii/S0263224123003032)) and later data-model linkage/WOPF work ([link](https://www.sciencedirect.com/science/article/pii/S0278612524000074)).
+- **Why:** this is mostly **evidence novelty**, not model novelty. If the protocol is airtight, reviewers will respect it. But “we benchmarked honestly and diffusion added nothing” is not a deep new method by itself.
+
+3. **Claim: boundary/detectability analysis**
+- **Novelty: MEDIUM if formal, LOW if only empirical**
+- **Closest prior:** I did **not** find an obvious direct milling-paper precedent for explicit early-label detectability boundaries; the nearest literature is broader PHM/OOD/misfit logic rather than your exact setup.
+- **Why:** if you really prove “c4-like regime change is not identifiable from first 10% labels under this model class/information pattern,” that is a meaningful niche contribution. If it is just “one bad tool failed and we flagged it,” reviewers will treat it as failure analysis, not novelty.
+
+4. **Is A fatal?**
+- **No for Measurement/EAAI. Not fatal, but it kills any broad novelty claim.**
+- **For JIM, proceed only if you narrow the claim and harden the evidence.**
+- The more dangerous omission is actually the **June 2026 drilling paper**, because it brings hierarchical Bayes into tool wear/manufacturing already. Your safe delta is:
+  - not “HBM for prognostics is new”
+  - but “public milling, sparse direct wear labels, deterministic mechanistic transfer, matched-budget head-to-head vs DL, plus negative and boundary results”
+
+5. **What a reviewer will cite to reject as incremental**
+- “This is just hierarchical Bayes applied to another degradation model.”  
+  Preempt with A + June 2026 drilling upfront, then say hierarchical Bayes is **borrowed**, not claimed as the invention.
+- “Bayesian mechanistic milling wear modeling already existed.”  
+  Preempt with Karandikar/Niaki and state the actual novelty is **pooled cross-tool prior transfer under matched label scarcity**, not single-tool Bayesian fitting.
+- “Your negative result only shows your diffusion implementation was weak.”  
+  Preempt with preregistration, matched inputs/label budgets, repeated seeds, and a **local** claim: “adds no downstream value in this public-data regime.”
+- “c4 is anecdote, not theory.”  
+  Preempt by weakening “provably” unless you really have identifiability math or a sharp indistinguishability construction.
+- “EB hyperprior from very few source tools is fragile.”  
+  Preempt with leave-one-source-out sensitivity and prior-scale robustness.
+
+6. **Strongest framing**
+- Headline: **“When scarce labels favor pooled physics over deep learning in public milling prognosis.”**
+- Subordinate points:
+  - hierarchical Bayes is a tool, not the claim
+  - conformal is a wrapper, not the claim
+  - negative result is a disciplined arbitration result, not a universal anti-diffusion argument
+  - failure-boundary analysis is valuable only if formalized
+
+7. **Score / verdict**
+- **Overall: 7.0/10**
+- **Verdict: PROCEED WITH CAUTION**
+- **Venue read:** likely viable for **Measurement/EAAI** if the protocol is clean; **JIM is a stretch** unless you formalize the detectability claim and show robustness beyond one anomalous regime.
+
+
+hook: Stop
+hook: Stop
+hook: Stop Completed
+hook: Stop Completed
+tokens used
+156,036
+**Bottom Line**
+
+This is **not HIGH-method-novelty** in 2026. It is a **moderately novel manufacturing instantiation with a potentially strong evidence package**. The publishable part is not “hierarchical Bayes for PHM” or “Bayesian wear modeling” per se. It is: **a public, low-label milling benchmark showing that pooled mechanistic transfer can beat data-hungry DL, plus a disciplined negative result and an explicit failure boundary**.
+
+1. **Claim: pooled-ODE mechanism for milling**
+- **Novelty: MEDIUM**
+- **Closest prior:** January 2026 generic HBM-PHM paper ([arXiv 2601.15942](https://doi.org/10.48550/arXiv.2601.15942)); domain-closer threat is **June 2026** drilling/tool-wear hierarchical Bayes ([J. Manufacturing Processes, 10.1016/j.jmapro.2026.06.050](https://doi.org/10.1016/j.jmapro.2026.06.050)); older milling Bayes lines are Karandikar 2014 ([Part 1](https://doi.org/10.1016/j.precisioneng.2013.06.006), [Part 2](https://doi.org/10.1016/j.precisioneng.2013.06.007)) and Niaki 2015/2016 ([MSEC 2015](https://www.researchgate.net/publication/281454330_Parameter_Estimation_Using_Markov_Chain_Monte_Carlo_Method_in_Mechanistic_Modeling_of_Tool_Wear_During_Milling), [dissertation](https://open.clemson.edu/all_dissertations/1858/)).
+- **Why:** partial pooling over degradation parameters is already in the literature; Bayesian mechanistic milling wear calibration is already in the literature. Your delta is the **combination**: milling wear-trajectory ODE + EB prior transfer + sparse early-label MAP target calibration + no online sensor stream required.
+
+2. **Claim: physics-vs-DL scarcity benchmark with negative result**
+- **Novelty: MEDIUM**
+- **Closest prior:** small-sample/hybrid tool-RUL papers in this lane, e.g. *Measurement* 2023 CNN + multistage Wiener ([link](https://www.sciencedirect.com/science/article/abs/pii/S0263224123003032)) and later data-model linkage/WOPF work ([link](https://www.sciencedirect.com/science/article/pii/S0278612524000074)).
+- **Why:** this is mostly **evidence novelty**, not model novelty. If the protocol is airtight, reviewers will respect it. But “we benchmarked honestly and diffusion added nothing” is not a deep new method by itself.
+
+3. **Claim: boundary/detectability analysis**
+- **Novelty: MEDIUM if formal, LOW if only empirical**
+- **Closest prior:** I did **not** find an obvious direct milling-paper precedent for explicit early-label detectability boundaries; the nearest literature is broader PHM/OOD/misfit logic rather than your exact setup.
+- **Why:** if you really prove “c4-like regime change is not identifiable from first 10% labels under this model class/information pattern,” that is a meaningful niche contribution. If it is just “one bad tool failed and we flagged it,” reviewers will treat it as failure analysis, not novelty.
+
+4. **Is A fatal?**
+- **No for Measurement/EAAI. Not fatal, but it kills any broad novelty claim.**
+- **For JIM, proceed only if you narrow the claim and harden the evidence.**
+- The more dangerous omission is actually the **June 2026 drilling paper**, because it brings hierarchical Bayes into tool wear/manufacturing already. Your safe delta is:
+  - not “HBM for prognostics is new”
+  - but “public milling, sparse direct wear labels, deterministic mechanistic transfer, matched-budget head-to-head vs DL, plus negative and boundary results”
+
+5. **What a reviewer will cite to reject as incremental**
+- “This is just hierarchical Bayes applied to another degradation model.”  
+  Preempt with A + June 2026 drilling upfront, then say hierarchical Bayes is **borrowed**, not claimed as the invention.
+- “Bayesian mechanistic milling wear modeling already existed.”  
+  Preempt with Karandikar/Niaki and state the actual novelty is **pooled cross-tool prior transfer under matched label scarcity**, not single-tool Bayesian fitting.
+- “Your negative result only shows your diffusion implementation was weak.”  
+  Preempt with preregistration, matched inputs/label budgets, repeated seeds, and a **local** claim: “adds no downstream value in this public-data regime.”
+- “c4 is anecdote, not theory.”  
+  Preempt by weakening “provably” unless you really have identifiability math or a sharp indistinguishability construction.
+- “EB hyperprior from very few source tools is fragile.”  
+  Preempt with leave-one-source-out sensitivity and prior-scale robustness.
+
+6. **Strongest framing**
+- Headline: **“When scarce labels favor pooled physics over deep learning in public milling prognosis.”**
+- Subordinate points:
+  - hierarchical Bayes is a tool, not the claim
+  - conformal is a wrapper, not the claim
+  - negative result is a disciplined arbitration result, not a universal anti-diffusion argument
+  - failure-boundary analysis is valuable only if formalized
+
+7. **Score / verdict**
+- **Overall: 7.0/10**
+- **Verdict: PROCEED WITH CAUTION**
+- **Venue read:** likely viable for **Measurement/EAAI** if the protocol is clean; **JIM is a stretch** unless you formalize the detectability claim and show robustness beyond one anomalous regime.
+
+
+EXIT:0
